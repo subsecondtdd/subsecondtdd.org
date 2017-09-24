@@ -8,7 +8,7 @@ This design principle can be applied to layers of an application as well as auto
 
 This allows unit testing a UI component with a fake model. 
 
-In the world of Lego there is only one interface, and a brick's studs are the inverse of its tubes. Software component are typically different. Their studs are not compatible with their tubes.
+In the world of Lego there is only one interface, and a brick's studs are the inverse of its tubes. Software components are typically different. Their studs are not compatible with their own tubes.
 
 For any given component's input and output interface we can can connect an inverse component. Connected together, these two component now have the same property as a lego brick. Its studs are the inverse of its tubes.
 
