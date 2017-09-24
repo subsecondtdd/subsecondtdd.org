@@ -20,7 +20,7 @@ We can make the component interfaces uniform by inserting inverse components in-
 
 These component pairs can be used as [GoF Proxies](https://en.wikipedia.org/wiki/Proxy_pattern).
 
-An interesting opportunity arises when we connect a domain-specific component whose output interface is the same as the UI component's input interface. Now we can write acceptance tests against the domain interface. We can run those tests agains different assemblies of our components:
+An interesting opportunity arises when we connect a domain-specific component whose output interface is the same as the UI component's input interface. Now we can write acceptance tests against the domain interface. We can run those tests against different assemblies of our components:
 
 *Illustration showing Cucumber->[DomApi->Dom]->[HTTPApi->HTTPRequest]->[HTTPRequest->RequestHandler]->[DomainApi->DAO]->[DB]*
 
