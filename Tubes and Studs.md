@@ -16,7 +16,9 @@ Component pairs like this can be assembled in various ways:
 
 *Illustration showing 2 assemblies: UI+fake model, UI+model+fake orm+, UI+model+real orm+databse
 
-We can make the component interfaces uniform by inserting inverse components in-between. These components simply translate from one protocol to another. From domain operation to HTTP, and from HTTP back to domain operation. From domain operation to ORM call, and down to the database. The latter is a leaf component, as it does not make sense to connect it to an inverse.
+We can make the component interfaces uniform by inserting inverse components in-between. These components simply translate from one protocol to another. From domain operation to a DOM, and from the DOM back to domain operation. From domain operation to HTTP, and from HTTP back to domain operation. From domain operation to ORM call, and down to the database. The latter is a leaf component, as it does not make sense to connect it to an inverse.
+
+These component pairs can be used as [GoF Proxies](https://en.wikipedia.org/wiki/Proxy_pattern).
 
 An interesting opportunity arises when we connect a domain-specific component whose output interface is the same as the UI component's input interface. Now we can write acceptance tests against the domain interface. We can run those tests agains different assemblies of our components:
 
