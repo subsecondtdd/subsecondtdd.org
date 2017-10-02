@@ -1,36 +1,28 @@
 # Subsecond TDD
 
-Running system tests fast
+Subsecond TDD is an approach to building complex software, optimised for developer productivity and happiness.
 
-## Philosophy
+## Fail fast first
 
-* System tests inspire system-wide confidence.
-* System tests are decoupled and resilient to changes.
-* Tests aren't slow, they have slow collaborators.
-* Fast system tests afford fewer unit tests.
-* Run system tests fast.
-
-## Fast system tests
-
-Subsecond TDD generates sustainable system tests by insisting they run fast.
+There is one rule: don't let slow tests break your flow.
 
 System tests typically simulate a production environment as accurately as possible to achieve the highest level of confidence in the correctness of the system under test.
 
 But optimising for confidence can be an expensive choice. Real systems use slow and cumbersome components that are difficult to automate. System tests quickly become so slow and unreliable that they cannot practically drive the development process in the same way low-level unit tests can.
 
-By structuring application and test code such that each slow component can be substituted with a fast equivalent, developers can run system tests fast, then slow.
+By structuring application and test code such that every slow component can be substituted with a fast equivalent, developers can run system tests fast for instant feedback, then the same tests in slow, fully-integrated mode for a final confirmation.
 
-Fast system tests can effectively guide the development of end-to-end features.
+Like low-level TDD guides the development of individual units, Subsecond TDD guides the development of end-to-end features.
 
 ## Benefits
 
 * **Confidence**
-  
-  Fast system tests make it practical to perform sweeping changes to the system under test with a safety net but not a straightjacket. Different ways of running tests offer unique assurances about different aspects of the system under test.
+
+  Fast system tests make it faster to perform sweeping changes to the system under test. Unlike low-level tests they act as a safety net but not a straightjacket. Different modes of running tests offer unique assurances about different facets of the system under test.
 
 * **Flow**
 
-  Fast system tests act as a development-time metronome, setting the rhythm and immediately catching logical and programmer errors. Increasingly integrated test modes guide the developer in small steps towards fully integrated features.
+  Fast system tests act as a development time metronome, setting the rhythm. Immediately catching logical errors reduces the effort required to fix them and makes your slow tests less likely to fail. Increasingly integrated test modes guide the developer in small steps towards fully integrated features.
 
 * **Options**
 
@@ -74,15 +66,15 @@ Although these look very different you notice that all three components effectiv
 
 You write your first system test which adds a visitor to the guestbook. You run it against your full stack but then you realise it takes over 2 seconds!
 
-A rule of thumb with sub-second feedback is that you should avoid running any slow test (more than 1 second) unless you already saw the exact same test passing fast (under one second). But the performance of this very first test is determined by the speed of the components under test.
+A rule of thumb is to avoid running any slow test (longer than 1 second) unless you already saw the exact same test passing fast (under one second). But the performance of this very first test is clearly determined by the speed of the components in scope: the browsers and databases.
 
-You do some profiling and discover that the browser automation library takes 1.7 seconds to launch the browser window, so you devise a way of running the your single test but reconfigured to interact directly with the http server hosting your web app.
+You do some profiling and discover that the browser automation library takes 1.7 seconds to launch a browser window. That's too long to wait for feedback so you devise a way of running your single test with a different setup: you reconfigure the test to interact directly with the http server hosting your web app.
 
-Running the same test at a lower-level, without the browser, run in 0.6 seconds. So now you have two ways of running the same system tests: one fast but running slightly less of your code, and one slow running more of it.
+Running the same test without a browser takes 0.6 seconds. So now you have two ways of running the same system tests: one faster, one slower.
 
-In fast mode, the client-side script is out of scope, and as you add more code there your confidence in fast tests is reduced. So you devise a way of running the client-side script against a virtual browser DOM. Now you have three modes of running the same test.
+In your new fast mode, client-side script is not executed, and as you introduce more client-side code you lose confidence in your fast tests. So you devise a way of running the client-side script against a virtual browser DOM. Now you have three modes of running the same test.
 
-After implementing more features the test suite starts to drag and you notice a delay of over a second between each change. So you substitute the database for a new, in-memory implementation of the Guestbook contract.
+After implementing more features the test suite starts to drag and you notice a delay of over a second between each change. So you substitute the database for an in-memory implementation of the Guestbook contract.
 
 Now you have even more ways of running the same set of tests. When implementing new features you run the same tests 5 times:
 
@@ -92,12 +84,12 @@ Now you have even more ways of running the same set of tests. When implementing 
 * virtual browser + memory
 * browser + http + database
 
-By running them roughly in order of fastest to slowest, each modes guides you through the development of a change to a single "layer" of the system under test:
+By running through the modes roughly in order of fastest to slowest, each mode guides the developer through the development of a change to a single layer of the system under test:
 
-1. Adding behaviour in the model passes 'memory' mode tests
-2. Implementing changes in the database passes 'database' mode tests
-3. Implementing web app handlers passes 'http + memory'  mode tests
-4. Client-side JavaScript passes 'virtual browser + memory' mode tests
-5. The 'browser + http + database' mode tests pass without any changes.
+1. Adding behaviour in the domain model passes 'memory' tests
+2. Implementing changes in the database passes 'database' tests
+3. Implementing web app handlers passes 'http + memory'  tests
+4. Adding client-side JavaScript passes 'virtual browser + memory' tests
+5. The 'browser + http + database' tests pass without any changes.
 
 Every time your tests get slow, you make them fast again.
