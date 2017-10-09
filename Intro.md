@@ -1,12 +1,12 @@
-# Subsecond TDD
+# Sub-Second TDD
 
-Subsecond TDD is an approach to building complex software, optimised for developer productivity and happiness.
+Sub-Second TDD is an approach to building complex software, optimised for developer productivity and happiness.
 
 ## Fail fast first
 
 There is one rule: don't let slow tests break your flow.
 
-Subsecond TDD offers most of the value of very high-level tests (usually called acceptance tests or system tests)  in a way that scales better than traditional approaches.
+Sub-Second TDD offers most of the value of very high-level tests (usually called acceptance tests or system tests)  in a way that scales better than traditional approaches.
 
 System tests and automated acceptance tests usually simulate a production environment as accurately as possible, in order to achieve the highest level of confidence in the correctness of the system under test.
 
@@ -14,7 +14,7 @@ But optimising for confidence can be an expensive choice. Real systems use slow 
 
 By structuring application and test code such that every slow component can be substituted with a fast equivalent, developers run a set of system tests really fast for instant feedback, then on a slower cycle run the same tests in fully-integrated mode for a final affirmation.
 
-Like traditional TDD guides the development of individual units, Subsecond TDD guides the development of end-to-end features.
+Like traditional TDD guides the development of individual units, Sub-Second TDD guides the development of end-to-end features.
 
 ## Benefits
 
@@ -42,11 +42,11 @@ Like traditional TDD guides the development of individual units, Subsecond TDD g
 
 ## Who is it for?
 
-Subsecond TDD is for competent programmers who are completely empowered to influence the architecture of the system under development.
+Sub-Second TDD is for competent programmers who are completely empowered to influence the architecture of the system under development.
 
 ## What it's not
 
-Subsecond TDD is not...
+Sub-Second TDD is not...
 
 * like traditional TDD because it isn't focused on units like modules or functions.
 * like BDD because it's not about language and syntax.
@@ -97,4 +97,4 @@ By running through the modes roughly in order of fastest to slowest, each mode g
 
 Every time your immediate tests slow down to 1 second, do whatever it takes to speed them up.
 
-With Subsecond TDD you test highly-integrated code, but never slowly-only.
+With Sub-Second TDD you test highly-integrated code, but never slowly-only.
